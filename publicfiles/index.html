@@ -13,6 +13,18 @@
       <h1>Socket.IO FileUploader</h1>
       <h2>With JS return</h2>
       
+      <form action="#"><!doctype html>
+<html>
+  <head>
+    <title>Socket.IO FileUploader</title>
+    <link rel="stylesheet" href="/publicfiles/style/style.css" type="text/css"/>
+    <script src='/publicfiles/js/js.js' ></script>
+  </head>
+  <body>
+
+      <h1>Socket.IO FileUploader</h1>
+      <h2>With JS </h2>
+      
       <form action="#">
           <div class="input-file-container">  
             <input class="input-file" id="siofu_input" type="file">
@@ -20,16 +32,26 @@
           </div>
           <p class="file-return"></p>
         </form>
-      
-    
-      
 
-    <!-- <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form> -->
-
-  
+    <script src="/siofu/client.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+        
+        <script>
+      var socket = io.connect();
+      var uploader = new SocketIOFileUpload(socket);
+      uploader.listenOnInput(document.getElementById("siofu_input"));
+       
+      
+    </script>
+  </body>
+</html>
+          <div class="input-file-container">  
+            <input class="input-file" id="siofu_input" type="file">
+            <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label>
+          </div>
+          <p class="file-return"></p>
+        </form>
+      
 
     <script src="/siofu/client.js"></script>
     <script src="/socket.io/socket.io.js"></script>
@@ -39,24 +61,6 @@
       var socket = io.connect();
       var uploader = new SocketIOFileUpload(socket);
       uploader.listenOnInput(document.getElementById("siofu_input"));
-      //  var socket = io();
-
-        
-       
-      // $(function () {    
-      //   $('form').submit(function(e){
-      //     e.preventDefault(); // prevents page reloading
-      //     socket.emit('chat message', $('#m').val());
-      //     $('#m').val('');
-      //     return false;
-      //   });
-      // });
-
-      // var socket = io.connect();
-      // socket.emit('chat message', 'test777');
-      // var uploader = new SocketIOFileUpload(socket);
-      // uploader.listenOnInput(document.getElementById("siofu_input"));
-
 
     </script>
   </body>
