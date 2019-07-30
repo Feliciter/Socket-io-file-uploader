@@ -5,8 +5,8 @@
 ```npm -i```
 
 ###### шаблоны файлов для загрузки
-    \files\src\test.json
-  \files\src\1.txt
+\files\src\test.json
+\files\src\1.txt
    
  
 
