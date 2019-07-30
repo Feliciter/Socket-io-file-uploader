@@ -1,28 +1,17 @@
 var siofu = require("socketio-file-upload");
-const serve = require("express-static");
 var express = require("express");
-
 var app = require("express")().use(siofu.router);
 var http = require("http").Server(app);
 var io = require("socket.io")(http);
 var path = require("path");
-var mime = require("mime-types");
-
-var parser = require("ua-parser-js");
 var fs = require("fs");
-
 var moment = require("moment");
 moment().format();
 var now = moment();
-
-var dateFormat = require("dateformat");
-var parseFormat = require("moment-parseformat");
 var pathtolog = "logs";
 var pathtoupload = "uploads";
-
 let dirCont = fs.readdirSync(__dirname + "/" + pathtoupload);
 let file = __dirname + "/" + pathtoupload + "/" + dirCont[0];
-
 var datetime; // = "15/Feb/2015:06:38:22 +0200";
 var iphost; // = "194.135.154.57";
 var useragent; // = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:37.0)";
@@ -33,7 +22,11 @@ var getImage; //; //='Image: localhost:8080/files/1.png';
 
 require("events").EventEmitter.defaultMaxListeners = 4;
 
+// app.use("/static", express.static(__dirname + "/publicfiles"));
+
 app.use("/static", express.static(__dirname + "/publicfiles"));
+app.use("/publicfiles/style", express.static(__dirname + "/publicfiles/style"));
+app.use("/publicfiles/js", express.static(__dirname + "/publicfiles/js"));
 
 app.get("/", function(req, res, next) {
   res.sendFile(__dirname + "/publicfiles/index.html");
@@ -75,9 +68,8 @@ io.on("connection", function(socket) {
 //
 io.on("connection", function(socket) {
   var siofuServer = new siofu();
-  siofuServer.on("saved", function(event) {   
-
-          (event.file.clientDetail.base = event.file.base),
+  siofuServer.on("saved", function(event) {
+    (event.file.clientDetail.base = event.file.base),
       // console.log(dirCont)
       //getTypeFile(event.file.name)
 
@@ -146,25 +138,21 @@ function writeLog(
   return;
 }
 
-
 function getContentFile(typefile) {
   if (typefile.match(/json$/i) == "json") {
     getContJson = JSON.parse(
       fs.readFileSync(__dirname + "/" + pathtoupload + "/" + typefile, "utf8")
     );
 
-   
-    var arr=[]
-    var mod_arr    
-    for (key in  getContJson) {
-        if ( getContJson.hasOwnProperty(key)) {       
-          arr.push( key+':'+  getContJson[key] ) 
-        }
-        
-    } 
-    getJson='Json '+  ' { '+arr +' } '
-   
-    
+    var arr = [];
+    var mod_arr;
+    for (key in getContJson) {
+      if (getContJson.hasOwnProperty(key)) {
+        arr.push(key + ":" + getContJson[key]);
+      }
+    }
+    getJson = "Json " + " { " + arr + " } ";
+
     writeLog(datetime, iphost, useragent, (stateNew = 0), getJson);
     return copyIMGtoPubic(typefile);
   }
