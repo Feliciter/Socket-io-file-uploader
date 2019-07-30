@@ -2,15 +2,19 @@
 Загрузщик   файлов на Socket-io с логированием информации из user-agent
 
 ###### Установка  
-```npm -i ```
+```
+npm -i
+```
 
-шаблоны файлов для загрузки
-  ```\files\src\test.json
-       \files\src\1.txt```
+###### шаблоны файлов для загрузки
+  
+  \files\src\test.json
+  \files\src\1.txt
+   
  
 
-###### логи 
-``` logs\log.log```
+###### логфайл
+ logs\log.log
 
 запуск для dev nodemon node app.
 запуск для prod   node app- (рекомендуется использовать PM2)
