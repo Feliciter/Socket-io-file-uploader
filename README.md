@@ -5,8 +5,8 @@
 ```npm -i```
 
 ###### шаблоны файлов для загрузки
-\files\src\test.json
-\files\src\1.txt
+    \files\src\test.json
+    \files\src\1.txt
    
  
 
@@ -14,7 +14,7 @@
  logs\log.log
 
 запуск для dev nodemon node app.
-запуск для prod   node app- (рекомендуется использовать PM2)
+для prod   node app- (рекомендуется использовать PM2)
 
 
 Загрузка шаблонного файла из /files/src осуществляется с помощью экранной формы на стороне клиента
