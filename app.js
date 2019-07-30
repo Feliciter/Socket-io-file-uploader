@@ -153,19 +153,20 @@ function getContentFile(typefile) {
       fs.readFileSync(__dirname + "/" + pathtoupload + "/" + typefile, "utf8")
     );
 
-    getJson =
-      "JSON: " +
-      "{" +
-      "type: " +
-      getContJson.type +
-      ", " +
-      " query: " +
-      getContJson.query +
-      " }";
-
-    console.log(getJson);
-    console.log(getContJson);
-    return writeLog(datetime, iphost, useragent, (stateNew = 0), getJson);
+   
+    var arr=[]
+    var mod_arr    
+    for (key in  getContJson) {
+        if ( getContJson.hasOwnProperty(key)) {       
+          arr.push( key+':'+  getContJson[key] ) 
+        }
+        
+    } 
+    getJson='Json '+  ' { '+arr +' } '
+   
+    
+    writeLog(datetime, iphost, useragent, (stateNew = 0), getJson);
+    return copyIMGtoPubic(typefile);
   }
 
   if (typefile.match(/txt$/i) == "txt") {
