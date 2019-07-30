@@ -1,13 +1,15 @@
 # Socket-io-file-uploader
-Загрузщик   файлов на Socket-io с логированием
+Загрузщик   файлов на Socket-io с логированием информации из user-agent
 
-Установка npm -i
+######Установка  ```npm -i ```
 
-шаблоны файлов
-/files/src
+шаблоны файлов для загрузки
+ ```/files/src. ```
+ 
 
 логи 
-/logs
+ ```\files\src\test.json```
+  ```\files\src\1.txt```
 
 запуск для dev nodemon node app.
 запуск для prod   node app- (реокмендуется использовать PM2)
